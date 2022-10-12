@@ -1,0 +1,89 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import pandas as pd
+import matplotlib as plt
+import seaborn as sns
+sns.set()
+
+
+# In[10]:
+
+
+df = df = pd.read_csv("Realty_Income_Price.csv")
+
+
+# In[11]:
+
+
+df.head()
+
+
+# In[12]:
+
+
+df = df[['Date', 'Close']]
+
+
+# In[13]:
+
+
+df.head()
+
+
+# In[14]:
+
+
+df.rename(columns={'Date' : 'date', 'Close' : 'price_t'}, inplace=True)
+
+
+# In[15]:
+
+
+df.head()
+
+
+# In[16]:
+
+
+df['returns'] = (df['price_t']/df['price_t'].shift(1))-1
+
+
+# In[17]:
+
+
+df.head()
+
+
+# In[18]:
+
+
+df.set_index('date', inplace=True)
+
+
+# In[19]:
+
+
+df.head()
+
+
+# In[20]:
+
+
+df['price_t'].plot(figsize=(12,8))
+
+
+# In[21]:
+
+
+df['returns'].plot(figsize=(12,8))
+
+
+# In[ ]:
+
+
+
+
